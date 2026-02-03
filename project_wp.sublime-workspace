@@ -1,0 +1,782 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"maxplayers",
+				"MAX_PLAYERS"
+			],
+			[
+				"update",
+				"UpdateDataVehicle"
+			],
+			[
+				"getvehic",
+				"GetVehicleZAngle"
+			],
+			[
+				"g",
+				"g_VehicleData"
+			],
+			[
+				"getvehicle",
+				"GetVehiclePos"
+			],
+			[
+				"send",
+				"SendClientMessage"
+			],
+			[
+				"pla",
+				"g_PlayerData"
+			],
+			[
+				"sendmessa",
+				"SendClientMessageToAll"
+			],
+			[
+				"padm",
+				"pAdminLevel"
+			],
+			[
+				"cache_get",
+				"cache_get_value_name"
+			],
+			[
+				"se",
+				"SendUsage"
+			],
+			[
+				"pbi",
+				"pBirthYear"
+			],
+			[
+				"sen",
+				"SendUsage"
+			],
+			[
+				"incl",
+				"include\t#include \"…\""
+			],
+			[
+				"cacheget",
+				"cache_get_value_name"
+			],
+			[
+				"regs",
+				"registrasi"
+			],
+			[
+				"ver",
+				"verify_code"
+			],
+			[
+				"cre",
+				"DCC_CreateEmbed"
+			],
+			[
+				"dcc",
+				"DCC_Embed"
+			],
+			[
+				"format",
+				"formatName"
+			],
+			[
+				"ch",
+				"ch_id"
+			],
+			[
+				"channe",
+				"Channel_UCP"
+			],
+			[
+				"cache_num",
+				"cache_num_rows"
+			],
+			[
+				"bcyr",
+				"bcrypt_verify"
+			],
+			[
+				"dialog",
+				"Dialog_Show"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "config.json",
+			"settings":
+			{
+				"buffer_size": 3342,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 203,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					1,
+					1,
+					"paste",
+					null,
+					"AQAAAAAAAAAAAAAAfgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					4,
+					1,
+					"left_delete",
+					null,
+					"AQAAAAAAAAAAAAAAAAAAAAAAAAAVAAAALnZzY29kZS8KZmlsZV9iYWNrdXAv",
+					"AQAAAAAAAAABAAAAFQAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					6,
+					1,
+					"left_delete",
+					null,
+					"AQAAAAAAAAAAAAAAAAAAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					17,
+					1,
+					"insert",
+					{
+						"characters": "project_"
+					},
+					"CAAAAC0AAAAAAAAALgAAAAAAAAAMAAAAb21wLWdhbWVtb2RlLgAAAAAAAAAvAAAAAAAAAAAAAAAvAAAAAAAAADAAAAAAAAAAAAAAADAAAAAAAAAAMQAAAAAAAAAAAAAAMQAAAAAAAAAyAAAAAAAAAAAAAAAyAAAAAAAAADMAAAAAAAAAAAAAADMAAAAAAAAANAAAAAAAAAAAAAAANAAAAAAAAAA1AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOQAAAAAAAAAtAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					18,
+					1,
+					"insert",
+					{
+						"characters": "wp"
+					},
+					"AgAAADUAAAAAAAAANgAAAAAAAAAAAAAANgAAAAAAAAA3AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANQAAAAAAAAA1AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					30,
+					1,
+					"paste",
+					null,
+					"AQAAAEwAAAAAAAAAVgAAAAAAAAAIAAAAZ2FtZW1vZGU",
+					"AQAAAAAAAAABAAAATAAAAAAAAABUAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					35,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAGgAAAAAAAAAaQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAaAAAAAAAAABoAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					38,
+					1,
+					"insert",
+					{
+						"characters": "\n\n\n"
+					},
+					"AwAAACwAAAAAAAAALQAAAAAAAAAAAAAALQAAAAAAAAAuAAAAAAAAAAAAAAAuAAAAAAAAAC8AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALAAAAAAAAAAsAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					40,
+					1,
+					"insert",
+					{
+						"characters": "plugins/"
+					},
+					"CAAAAC0AAAAAAAAALgAAAAAAAAAAAAAALgAAAAAAAAAvAAAAAAAAAAAAAAAvAAAAAAAAADAAAAAAAAAAAAAAADAAAAAAAAAAMQAAAAAAAAAAAAAAMQAAAAAAAAAyAAAAAAAAAAAAAAAyAAAAAAAAADMAAAAAAAAAAAAAADMAAAAAAAAANAAAAAAAAAAAAAAANAAAAAAAAAA1AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAALQAAAAAAAAAtAAAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					41,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAADUAAAAAAAAANgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANQAAAAAAAAA1AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					42,
+					1,
+					"insert",
+					{
+						"characters": "qawno"
+					},
+					"BQAAADYAAAAAAAAANwAAAAAAAAAAAAAANwAAAAAAAAA4AAAAAAAAAAAAAAA4AAAAAAAAADkAAAAAAAAAAAAAADkAAAAAAAAAOgAAAAAAAAAAAAAAOgAAAAAAAAA7AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANgAAAAAAAAA2AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					43,
+					1,
+					"insert",
+					{
+						"characters": "\\"
+					},
+					"AQAAADsAAAAAAAAAPAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOwAAAAAAAAA7AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					44,
+					1,
+					"left_delete",
+					null,
+					"AQAAADsAAAAAAAAAOwAAAAAAAAABAAAAXA",
+					"AQAAAAAAAAABAAAAPAAAAAAAAAA8AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					45,
+					1,
+					"insert",
+					{
+						"characters": "/"
+					},
+					"AQAAADsAAAAAAAAAPAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAOwAAAAAAAAA7AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					46,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAADwAAAAAAAAAPQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPAAAAAAAAAA8AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					47,
+					1,
+					"insert",
+					{
+						"characters": "script"
+					},
+					"BgAAAD0AAAAAAAAAPgAAAAAAAAAAAAAAPgAAAAAAAAA/AAAAAAAAAAAAAAA/AAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAQQAAAAAAAAAAAAAAQQAAAAAAAABCAAAAAAAAAAAAAABCAAAAAAAAAEMAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAPQAAAAAAAAA9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					48,
+					1,
+					"insert",
+					{
+						"characters": "files/"
+					},
+					"BgAAAEMAAAAAAAAARAAAAAAAAAAAAAAARAAAAAAAAABFAAAAAAAAAAAAAABFAAAAAAAAAEYAAAAAAAAAAAAAAEYAAAAAAAAARwAAAAAAAAAAAAAARwAAAAAAAABIAAAAAAAAAAAAAABIAAAAAAAAAEkAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAQwAAAAAAAABDAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					57,
+					3,
+					"swap_line_down",
+					null,
+					"BgAAADYAAAAAAAAAQgAAAAAAAAAAAAAAIQAAAAAAAAAhAAAAAAAAAAwAAABjb25maWcuanNvbgo9AAAAAAAAAEkAAAAAAAAAAAAAACoAAAAAAAAAKgAAAAAAAAAMAAAAY29uZmlnLmpzb24KSgAAAAAAAABWAAAAAAAAAAAAAAAxAAAAAAAAADEAAAAAAAAADAAAAGNvbmZpZy5qc29uCg",
+					"AQAAAAAAAAABAAAALAAAAAAAAAAhAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					59,
+					1,
+					"insert",
+					{
+						"characters": "\nconfi"
+					},
+					"BgAAAEkAAAAAAAAASgAAAAAAAAAAAAAASgAAAAAAAABLAAAAAAAAAAAAAABLAAAAAAAAAEwAAAAAAAAAAAAAAEwAAAAAAAAATQAAAAAAAAAAAAAATQAAAAAAAABOAAAAAAAAAAAAAABOAAAAAAAAAE8AAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASQAAAAAAAABJAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					60,
+					1,
+					"insert",
+					{
+						"characters": "g"
+					},
+					"AQAAAE8AAAAAAAAAUAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATwAAAAAAAABPAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					61,
+					6,
+					"left_delete",
+					null,
+					"BgAAAE8AAAAAAAAATwAAAAAAAAABAAAAZ04AAAAAAAAATgAAAAAAAAABAAAAaU0AAAAAAAAATQAAAAAAAAABAAAAZkwAAAAAAAAATAAAAAAAAAABAAAAbksAAAAAAAAASwAAAAAAAAABAAAAb0oAAAAAAAAASgAAAAAAAAABAAAAYw",
+					"AQAAAAAAAAABAAAAUAAAAAAAAABQAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					62,
+					1,
+					"insert",
+					{
+						"characters": "basn"
+					},
+					"BAAAAEoAAAAAAAAASwAAAAAAAAAAAAAASwAAAAAAAABMAAAAAAAAAAAAAABMAAAAAAAAAE0AAAAAAAAAAAAAAE0AAAAAAAAATgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAASgAAAAAAAABKAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					63,
+					2,
+					"left_delete",
+					null,
+					"AgAAAE0AAAAAAAAATQAAAAAAAAABAAAAbkwAAAAAAAAATAAAAAAAAAABAAAAcw",
+					"AQAAAAAAAAABAAAATgAAAAAAAABOAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					64,
+					1,
+					"insert",
+					{
+						"characters": "n.json"
+					},
+					"BgAAAEwAAAAAAAAATQAAAAAAAAAAAAAATQAAAAAAAABOAAAAAAAAAAAAAABOAAAAAAAAAE8AAAAAAAAAAAAAAE8AAAAAAAAAUAAAAAAAAAAAAAAAUAAAAAAAAABRAAAAAAAAAAAAAABRAAAAAAAAAFIAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAATAAAAAAAAABMAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					65,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAFIAAAAAAAAAUwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUgAAAAAAAABSAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					66,
+					1,
+					"paste",
+					null,
+					"AQAAAFMAAAAAAAAAYQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAUwAAAAAAAABTAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					67,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAGEAAAAAAAAAYgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYQAAAAAAAABhAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					68,
+					1,
+					"paste",
+					null,
+					"AQAAAGIAAAAAAAAAbgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAYgAAAAAAAABiAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					69,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAG4AAAAAAAAAbwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbgAAAAAAAABuAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					70,
+					1,
+					"paste",
+					null,
+					"AQAAAG8AAAAAAAAAfAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAbwAAAAAAAABvAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					71,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAHwAAAAAAAAAfQAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfAAAAAAAAAB8AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					72,
+					1,
+					"paste",
+					null,
+					"AQAAAH0AAAAAAAAAiwAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAfQAAAAAAAAB9AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					73,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAAIsAAAAAAAAAjAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAiwAAAAAAAACLAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					74,
+					1,
+					"paste",
+					null,
+					"AQAAAIwAAAAAAAAAmgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAjAAAAAAAAACMAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					77,
+					1,
+					"left_delete",
+					null,
+					"AQAAAJoAAAAAAAAAmgAAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAmwAAAAAAAACbAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					80,
+					6,
+					"swap_line_down",
+					null,
+					"DAAAACEAAAAAAAAAKQAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAgAAABsb2cudHh0CioAAAAAAAAAMgAAAAAAAAAAAAAAGQAAAAAAAAAZAAAAAAAAAAgAAABsb2cudHh0CjEAAAAAAAAAOQAAAAAAAAAAAAAAIgAAAAAAAAAiAAAAAAAAAAgAAABsb2cudHh0Cj4AAAAAAAAARgAAAAAAAAAAAAAAKQAAAAAAAAApAAAAAAAAAAgAAABsb2cudHh0CkoAAAAAAAAAUgAAAAAAAAAAAAAANgAAAAAAAAA2AAAAAAAAAAgAAABsb2cudHh0ClMAAAAAAAAAWwAAAAAAAAAAAAAAQgAAAAAAAABCAAAAAAAAAAgAAABsb2cudHh0Cg",
+					"AQAAAAAAAAABAAAADQAAAAAAAAANAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					83,
+					1,
+					"insert",
+					{
+						"characters": "\n"
+					},
+					"AQAAADUAAAAAAAAANgAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAANQAAAAAAAAA1AAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					86,
+					2,
+					"left_delete",
+					null,
+					"AgAAACkAAAAAAAAAKQAAAAAAAAAMAAAAc2NyaXB0ZmlsZXMvKAAAAAAAAAAoAAAAAAAAAAEAAAAK",
+					"AQAAAAAAAAABAAAANQAAAAAAAAApAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					89,
+					1,
+					"left_delete",
+					null,
+					"AQAAAMsAAAAAAAAAywAAAAAAAAABAAAACg",
+					"AQAAAAAAAAABAAAAzAAAAAAAAADMAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/F/Project/samp/west_progo_project",
+		"/F/Project/samp/west_progo_project/plugins",
+		"/F/Project/samp/west_progo_project/qawno"
+	],
+	"file_history":
+	[
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/vehicles/vehicle_core.inc",
+		"/F/Project/samp/omp_gamemode/changelog.md",
+		"/F/Project/samp/omp_gamemode/config.json",
+		"/F/Project/samp/omp_gamemode/gamemodes/main.pwn",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/players/player_dialog.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/server/server_variable.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/server/server_utils.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/vehicles/vehicle_data.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/vehicles/vehicle_autosave.inc",
+		"/F/Project/samp/omp_gamemode/qawno/include/omp_vehicle.inc",
+		"/F/Project/samp/omp_gamemode/qawno/include/YSI_Game/y_vehicledata.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/players/player_ucp.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/players/player_utils.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/admin/admin_utils.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/server/server_define.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/cmd/admin_command.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/server/server_macro.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/players/player_data.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/cmd/player_command.inc",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/admin/admin_data.inc",
+		"/F/Project/samp/omp_gamemode/qawno/include/discord-connector.inc",
+		"/F/Project/samp/omp_gamemode/logs/plugins/mysql.log",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/discord/discord_cmd.inc",
+		"/F/Project/samp/omp_gamemode/logs/plugins/discord-connector.log",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text/Packages/User/Preferences.sublime-settings",
+		"/F/Project/samp/omp_gamemode/gamemodes/modules/discord/tesaja.inc",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text/Packages/User/Pawn.sublime-build",
+		"/F/Project/samp/crott/gamemodes/gm.pwn",
+		"/F/Project/samp/crott/Pawn.sublime-build",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text/Packages/User/pawn-build.sublime-build"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "config.json",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JSON/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 867.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": ".gitignore",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								112,
+								112
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Materialize/Langs/Git.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 191.0,
+		"history":
+		[
+		]
+	},
+	"output.find_results":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"pinned_build_system": "Packages/User/Pawn.sublime-build",
+	"project": "project_wp.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"vehicle_data",
+				"gamemodes\\modules\\vehicles\\vehicle_data.inc"
+			],
+			[
+				"vehicleda",
+				"qawno\\include\\YSI_Game\\y_vehicledata.inc"
+			],
+			[
+				"vehicle",
+				"gamemodes\\modules\\vehicles\\vehicle_core.inc"
+			],
+			[
+				"vehic",
+				"gamemodes\\modules\\vehicles\\vehicle_core.inc"
+			],
+			[
+				"macro",
+				"gamemodes\\modules\\server\\server_macro.inc"
+			],
+			[
+				"server",
+				"gamemodes\\modules\\server\\server_macro.inc"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 209.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

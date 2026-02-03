@@ -1,0 +1,16 @@
+components/
+gamemodes/main.amx
+plugins/
+logs/
+qawno/
+scriptfiles/YSI
+config.json
+bans.json
+log.txt
+libmariadb.dll
+log-core.dll
+log-core2.dll
+omp-server.exe
+omp-server.pdb
+project_wp.sublime-project
+omp-project_wp.sublime-workspace
