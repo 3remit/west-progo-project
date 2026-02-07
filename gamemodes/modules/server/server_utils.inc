@@ -1,19 +1,17 @@
 KickEx(playerid)
 {
 	SetTimerEx("_KickDelay", 2000, false, "i", playerid);
-	print("Function KickEx sedang berjalan selama 5 detik");
 	return 1;
 }
 
 forward _KickDelay(playerid);
 public _KickDelay(playerid) 
 {
-	print("Function _KickDelay siap eksekusi kick");
 	Kick(playerid);
 	return 1;
 }
 
-stock ConnectToDatabase(const host[], const user[], const pass[], const db[])
+CreateConnectionDatabase(const host[], const user[], const pass[], const db[])
 {
 	g_SQL = mysql_connect(host, user, pass, db);
 
@@ -64,4 +62,51 @@ stock RandomEx(minValue, maxValue)
 	}
 
 	return random(maxValue - minValue + 1) + minValue;
+}
+
+strreplace(source[], find, replace)
+{
+	new len = strlen(source);
+	for(new i = 0; i < len; i++)
+	{
+		if(source[i] == find)
+		{
+			source[i] = replace;
+		}
+	}
+	return 1;
+}
+
+ProximityChatDetector(playerid, Float:radius, const message[], color1, color2, color3, color4, color5)
+{
+	new Float:posX,
+		Float:posY,
+		Float:posZ;
+
+	GetPlayerPos(playerid, posX, posY, posZ);
+
+	foreach(new i : Player)
+	{
+		if(IsPlayerInRangeOfPoint(i, radius / 16, posX, posY, posZ))
+		{
+			SendClientMessage(i, color1, message);
+		}
+		else if(IsPlayerInRangeOfPoint(i, radius / 8, posX, posY, posZ))
+		{
+			SendClientMessage(i, color2, message);
+		}
+		else if(IsPlayerInRangeOfPoint(i, radius / 4, posX, posY, posZ))
+		{
+			SendClientMessage(i, color3, message);
+		}
+		else if(IsPlayerInRangeOfPoint(i, radius / 2, posX, posY, posZ))
+		{
+			SendClientMessage(i, color4, message);
+		}
+		else if(IsPlayerInRangeOfPoint(i, radius, posX, posY, posZ))
+		{
+			SendClientMessage(i, color5, message);
+		}
+	}
+	return 1;
 }

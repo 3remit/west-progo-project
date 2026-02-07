@@ -1,12 +1,29 @@
 /*                                                
-,--------.                       ,--.   ,--.,------. ,--.   ,------.   
-'--.  .--',--,--,  ,---.  ,--,--.|  |   |  ||  .--. '|  |   |  .-.  \  
-   |  |   |      \(  .-' ' ,-.  ||  |.'.|  ||  '--'.'|  |   |  |  \  : 
-   |  |   |  ||  |.-'  `)\ '-'  ||   ,'.   ||  |\  \ |  '--.|  '--'  / 
-   `--'   `--''--'`----'  `--`--''--'   '--'`--' '--'`-----'`-------'  
+                                       
+▄▄▄▄▄▄▄                                
+▀▀▀▀████                      ▀▀  ██   
+  ▄▄██▀  ████▄ ▄█▀█▄ ███▄███▄ ██ ▀██▀▀ 
+    ███▄ ██ ▀▀ ██▄█▀ ██ ██ ██ ██  ██   
+███████▀ ██    ▀█▄▄▄ ██ ██ ██ ██▄ ██   
+                                       
+                                       
+Gamemode by 3remit
+
+credit to : - open.mp/openmultiplayer for base gamemode
+						- Y-Less for sscanf
+						- pawn-lang for YSI 
+						- pBlueG for MySQL
+						- Sreyas Sreelal for Samp Bcrypt
+						- katursis for Pawn.CMD
+						- samp-incognito for Streamer
+						- vdgiapp for mSelection
+						- Awsomedude for easyDialog
+						- maddinat0r for Samp Discord Connector
+						- AkshayMohan for Pawn Discord CMD                  
 */
 
 #define YSI_NO_VERSION_CHECK
+
 #include <open.mp>
 
 #undef MAX_PLAYERS
@@ -16,6 +33,8 @@
 #define MAX_VEHICLES 100
 
 #include <YSI_Data\y_iterate>
+#include <YSI_Coding\y_timers>
+
 #include <streamer>
 #include <Pawn.CMD>
 #include <a_mysql>
@@ -25,49 +44,61 @@
 #include <mSelection>
 #include <discord-connector>
 #include <discord-cmd>
+#include <streamer>
 
-// file server module 
+// server module 
 #include "modules\server\server_define.inc"
 #include "modules\server\server_macro.inc"
 #include "modules\server\server_textdraw.pwn"
 #include "modules\server\server_variable.inc"
 #include "modules\server\server_utils.inc"
 
-// file player module
-#include "modules\players\player_data.inc"
+// player module
+#include "modules\players\player_header.inc"
 #include "modules\players\player_utils.inc"
-#include "modules\players\player_ucp.inc"
+#include "modules\players\player_callback.inc"
 #include "modules\players\player_dialog.inc"
+#include "modules\players\player_saveload.inc"
 
-// file vehicle module
-#include "modules\vehicles\vehicle_data.inc"
-#include "modules\vehicles\vehicle_core.inc"
+// admin module
+#include "modules\admin\admin_header.inc"
+#include "modules\admin\admin_function.inc"
+#include "modules\admin\admin_command.inc"
 
+// vehicle module
+#include "modules\vehicles\vehicle_header.inc"
+#include "modules\vehicles\vehicle_create.inc"
+#include "modules\vehicles\vehicle_saveload.inc"
+
+// public command module
 #include "modules\cmd\vehicle_command.inc"
 #include "modules\cmd\player_command.inc"
 
 // file discord module
 #include "modules\discord\discord_cmd.inc"
+#include "modules\discord\discord_callback.inc"
 
-main()
-{
+// small_feature
+#include "modules\small_feature\nametag_player.inc"
+
+main(){
 }
 
-// Disaat gamemode start
 public OnGameModeInit()
 {
-	SendRconCommand("game.mode %s", GAMEMODE);
-	// load skin model untuk skin awal spawn
-	m_SkinSpawn = LoadModelSelectionMenu("male_spawnskin.txt");
-	f_SkinSpawn = LoadModelSelectionMenu("female_spawnskin.txt");
-
-	// database 
-	ConnectToDatabase(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
-	
-	CreateGlobalTextdraw();
+	ShowNameTags(false);
 
 	DisableInteriorEnterExits();
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
+
+	SetGameModeText(GAMEMODE);
+
+	m_SkinSpawn = LoadModelSelectionMenu("male_spawnskin.txt");
+	f_SkinSpawn = LoadModelSelectionMenu("female_spawnskin.txt");
+
+	CreateConnectionDatabase(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
+	
+	CreateGlobalTextdraw();
 
 	Iter_Init(PlayerVehicle);
 
@@ -83,20 +114,21 @@ public OnGameModeExit()
 
 public OnPlayerConnect(playerid)
 {
-	// textdraw server
-	TextDrawShowForPlayer(playerid, Server_Name[0]);
-	TextDrawShowForPlayer(playerid, Server_Name[1]);
+	SetPlayerColor(playerid, COLOR_WHITE);
+
+	g_PlayerData[playerid][pNameTag] = CreateDynamic3DTextLabel("Loading....", COLOR_WHITE, 0.0, 0.0, 0.1, NAMETAG_DISTANCE, .attachedplayer = playerid, .testlos = 1);
+
+	Forex(i, 3)
+	{
+		TextDrawShowForPlayer(playerid, ServerName[i]);
+	}
 
 	ResetValueVariable(playerid);
 	
 	AccountCheck(playerid);
 
 	if (IsPlayerUsingOfficialClient(playerid))
-        g_PlayerData[playerid][isOfficialClient] = true;
-
-	new ip[16];
-	GetPlayerIp(playerid, ip, sizeof(ip));
-	SendClientMessage(playerid, COLOR_WHITE, "IP : %s", ip);
+		g_PlayerData[playerid][isOfficialClient] = true;
 	return 1;
 }
 
@@ -107,14 +139,18 @@ public OnPlayerDisconnect(playerid, reason)
 	UpdateDataPlayer(playerid);
 	SetPlayerName(playerid, g_PlayerData[playerid][pUCP]);
 
+	if(IsValidDynamic3DTextLabel(g_PlayerData[playerid][pNameTag]))
+	{
+		DestroyDynamic3DTextLabel(g_PlayerData[playerid][pNameTag]);
+		printf("Dynamic nametag dihapus -> pID %d", playerid);
+	}
+
 	g_PlayerData[playerid][isLogin] = false;
 	return 1;
 }
 
 public OnPlayerRequestClass(playerid, classid)
 {
-    // SetPlayerCameraPos(playerid, 367.9782, -2029.3656, 45.6719);
-    // SetPlayerCameraLookAt(playerid, 367.9782, -2029.3656, 45.6719);
 	return 1;
 }
 
@@ -130,20 +166,17 @@ public OnPlayerDeath(playerid, killerid, WEAPON:reason)
 
 public OnPlayerExitVehicle(playerid, vehicleid)
 {
-	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
-	{
-		if((gettime() - g_VehicleData[vehicleid][vCooldownSave] < 20)) return SendClientMessage(playerid, COLOR_WHITE, "Delay 20 detik untuk save");
-		g_VehicleData[vehicleid][vCooldownSave] = gettime();
-		GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2]);
-		GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPos][3]);
+	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return 0;
 
-		UpdateDataVehicle(vehicleid);
-		SendClientMessage(playerid, COLOR_WHITE, "Kamu keluar dari kursi pengemudi kendaraan, vehid %d [disimpan]", vehicleid);
-	}
-	else 
-	{
-		SendClientMessage(playerid, COLOR_WHITE, "Kamu keluar dari kursi penumpang kendaraan, vehid %d [tidak disimpan]", vehicleid);
-	}
+	new currentTime = gettime();
+	if(currentTime - g_VehicleData[vehicleid][vCooldownSave] < 20) return 0;
+
+	g_VehicleData[vehicleid][vCooldownSave] = currentTime;
+
+	GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2]);
+	GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPos][3]);
+
+	defer DelaySaveVehicle(vehicleid);
 	return 1;
 }
 
@@ -160,21 +193,16 @@ public OnPlayerRequestSpawn(playerid)
 public OnPlayerText(playerid, text[])
 {
 	new msg[144];
-	format(msg, sizeof(msg), "%s [%d] : %s", g_PlayerData[playerid][pName], playerid, text);
-
-	new Float:posX,
-		Float:posY,
-		Float:posZ;
-
-	GetPlayerPos(playerid, posX, posY, posZ);
-
-	foreach(new i : Player)
+	if(!g_PlayerData[playerid][isAdminDuty])
 	{
-		if(IsPlayerInRangeOfPoint(i, 20.0, posX, posY, posZ))
-		{
-			SendClientMessage(i, COLOR_WHITE, msg);
-		}
+		format(msg, sizeof(msg), "%s says %s", g_PlayerData[playerid][pName], text);
 	}
+	else
+	{
+		format(msg, sizeof(msg), "{FF1B1A}[ADMIN] %s {ffffff}: %s", g_PlayerData[playerid][pAdminName], text);
+	}
+
+	ProximityChatDetector(playerid, CHAT_RADIUS, msg, COLOR_WHITE, COLOR_FADE1, COLOR_FADE2, COLOR_FADE3, COLOR_FADE4);
 
 	return 0;
 }

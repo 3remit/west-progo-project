@@ -1,18 +1,4 @@
-
-stock AccountCheck(playerid)
-{
-    g_MysqlRaceCheck[playerid]++;
-    printf("RACE CHECK %d", g_MysqlRaceCheck[playerid]);
-
-    GetPlayerName(playerid, g_PlayerData[playerid][pUCP], MAX_PLAYER_NAME);
-
-	new query[128];
-	mysql_format(g_SQL, query, sizeof(query), "SELECT * FROM ucp WHERE ucp_name = '%e' LIMIT 1", g_PlayerData[playerid][pUCP]);
-	mysql_tquery(g_SQL, query, "OnUCPChecked", "dd", playerid, g_MysqlRaceCheck[playerid]);
-    return 1;
-}
-
-Function::OnUCPChecked(playerid, race_check)
+Callback::OnUCPChecked(playerid, race_check)
 {
 	if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -23,8 +9,8 @@ Function::OnUCPChecked(playerid, race_check)
         cache_get_value_name_int(0, "activation", g_PlayerData[playerid][pActivation]);
 		cache_get_value_name(0, "password", g_PlayerData[playerid][pPassword]);
 
-        // printf("kode ucp chked %d", g_PlayerData[playerid][pVerifyCode]);
-        // printf("pw chked %s", g_PlayerData[playerid][pPassword]);
+        cache_get_value_name_int(0, "admin", g_PlayerData[playerid][pAdminLevel]);
+        cache_get_value_name(0, "admin_name", g_PlayerData[playerid][pAdminName]);
 
         if(g_PlayerData[playerid][pActivation] == 0)
         {
@@ -47,11 +33,10 @@ Function::OnUCPChecked(playerid, race_check)
 	return 1;
 }
 
-Function::OnPasswordHashed(playerid, hash_id)
+Callback::OnPasswordHashed(playerid, hash_id)
 {
 	bcrypt_get_hash(g_PlayerData[playerid][pPassword], BCRYPT_HASH_LENGTH);
     g_PlayerData[playerid][pActivation] = 1;
-    // printf("pw chked %s", g_PlayerData[playerid][pPassword]);
     
     new query[250];
     mysql_format(g_SQL, query, sizeof(query), "UPDATE ucp set activation = '%d', password = '%e' WHERE ucp_name = '%e'", g_PlayerData[playerid][pActivation], g_PlayerData[playerid][pPassword], g_PlayerData[playerid][pUCP]);
@@ -59,8 +44,7 @@ Function::OnPasswordHashed(playerid, hash_id)
 	return 1;
 }
 
-
-Function::OnPasswordVerify(playerid, bool:success)
+Callback::OnPasswordVerify(playerid, bool:success)
 {
     new str[185];
 	if(success)
@@ -86,17 +70,7 @@ Function::OnPasswordVerify(playerid, bool:success)
 	return 1;
 }
 
-stock CheckUserCharacter(playerid)
-{
-    g_MysqlRaceCheck[playerid]++;
-
-    new query[128];
-    mysql_format(g_SQL, query, sizeof(query), "SELECT username FROM player WHERE ucp = '%s' LIMIT %d", g_PlayerData[playerid][pUCP], MAX_CHARS);
-    mysql_tquery(g_SQL, query, "OnCharacterLoaded", "dd", playerid, g_MysqlRaceCheck[playerid]);
-    return 1;
-}
-
-Function::OnCharacterLoaded(playerid, race_check)
+Callback::OnCharacterLoaded(playerid, race_check)
 {
     if(race_check != g_MysqlRaceCheck[playerid]) return KickEx(playerid);
 
@@ -105,41 +79,18 @@ Function::OnCharacterLoaded(playerid, race_check)
     Forex(i, MAX_CHARS)
     {
         PlayerCharacter[playerid][i][0] = EOS;
-        print("eos");
     }
 
     Forex(k, rows)
     {
         cache_get_value_name(k, "username", PlayerCharacter[playerid][k]);
-        print("name");
     }
+    
     ShowCharacterList(playerid);
     return 1;
 }
 
-stock ShowCharacterList(playerid)
-{
-    new name[268],
-        str[128],
-        count;
-
-    for(new i; i < MAX_CHARS; i++)
-    {
-        if(PlayerCharacter[playerid][i][0] != EOS)
-        {
-            format(str, sizeof(str), "%s\n", PlayerCharacter[playerid][i]);
-            strcat(name, str);
-            count++;
-        }
-    }
-
-    if(count < MAX_CHARS) strcat(name, "+ New Character");
-    
-    Dialog_Show(playerid, DialogListChar, DIALOG_STYLE_LIST, "List Character", name, "Choose", "Close");
-    return 1;
-}
-
-Function::OnUsernameChecked(playerid, const name[], race_check)
+Callback::OnUsernameChecked(playerid, const name[], race_check)
 {
     if(race_check != g_MysqlRaceCheck[playerid])    
         return KickEx(playerid);
@@ -152,7 +103,7 @@ Function::OnUsernameChecked(playerid, const name[], race_check)
     return 1;
 }
 
-Function::OnInsertCharacter(playerid)
+Callback::OnInsertCharacter(playerid)
 {
     g_PlayerData[playerid][pID] = cache_insert_id();
 
@@ -161,40 +112,4 @@ Function::OnInsertCharacter(playerid)
     g_PlayerData[playerid][isLogin] = true;
     CreateSetupCharacter(playerid);
     return 1;
-}
-
-Function::OnCharacterDataLoaded(playerid)
-{
-    CalculateTickCount(playerid, "Load Character");
-
-	cache_get_value_name_int(0, "id", g_PlayerData[playerid][pID]);
-    printf("ID %d", g_PlayerData[playerid][pID]);
-    if(g_PlayerData[playerid][pID] < 1)
-    {
-        SendError(playerid, "Akun ini tidak terdaftar dalam database");
-        KickEx(playerid);
-        return 1;
-    }
-
-	cache_get_value_name_float(0, "pos_x", g_PlayerData[playerid][pPos][0]);
-	cache_get_value_name_float(0, "pos_y", g_PlayerData[playerid][pPos][1]);
-	cache_get_value_name_float(0, "pos_z", g_PlayerData[playerid][pPos][2]);
-	cache_get_value_name_float(0, "pos_a", g_PlayerData[playerid][pPos][3]);
-
-	cache_get_value_name_int(0, "interior", g_PlayerData[playerid][pInterior]);
-	cache_get_value_name_int(0, "virtual_world", g_PlayerData[playerid][pVirtual_World]);
-	cache_get_value_name_int(0, "skin", g_PlayerData[playerid][pSkin]);
-	cache_get_value_name_int(0, "money", g_PlayerData[playerid][pMoney]);
-	cache_get_value_name_int(0, "level", g_PlayerData[playerid][pLevel]);
-
-    g_PlayerData[playerid][isLogin] = true;
-    SetSpawnInfo(playerid, NO_TEAM, g_PlayerData[playerid][pSkin], g_PlayerData[playerid][pPos][0], g_PlayerData[playerid][pPos][1], g_PlayerData[playerid][pPos][2], g_PlayerData[playerid][pPos][3], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
-    SpawnPlayer(playerid);
-    GetPlayerNameEx(playerid);
-    
-    SetPlayerInterior(playerid, g_PlayerData[playerid][pInterior]);
-    SetPlayerVirtualWorld(playerid, g_PlayerData[playerid][pVirtual_World]);
-    GivePlayerMoney(playerid, g_PlayerData[playerid][pMoney]);
-    SetPlayerScore(playerid, g_PlayerData[playerid][pLevel]);
-	return 1;
 }

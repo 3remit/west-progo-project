@@ -1,24 +1,15 @@
-stock AddVeh(playerid, model, Float:x, Float:y, Float:z, Float:a, color1, color2)
+timer DelaySaveVehicle[1000](vehicleid)
 {
-    new vehicleid = CreateVehicle(model, x, y, z, a, color1, color2, -1, false);
-    if(vehicleid == INVALID_VEHICLE_ID) return 0;
-    
-    g_VehicleData[vehicleid][vOwner] = g_PlayerData[playerid][pID];
-    g_VehicleData[vehicleid][vModel] = model;
-    g_VehicleData[vehicleid][vPos][0] = x;
-    g_VehicleData[vehicleid][vPos][1] = y;
-    g_VehicleData[vehicleid][vPos][2] = z;
-    g_VehicleData[vehicleid][vPos][3] = a;
-    g_VehicleData[vehicleid][vColor1] = color1;
-    g_VehicleData[vehicleid][vColor2] = color2;
-    g_VehicleData[vehicleid][isExists] = true;
+    if(!IsValidVehicle(vehicleid))
+        return printf("[VEHICLE] : Error dalam menyimpan kendaraan id [%d]!", vehicleid);
 
-    Iter_Add(PlayerVehicle, vehicleid);
+    UpdateDataVehicle(vehicleid);
+    return 1;
+}
 
-    new query[450];
-    mysql_format(g_SQL, query, sizeof(query), "INSERT INTO vehicles (owner_id, model, pos_x, pos_y, pos_z, pos_a, color1, color2) VALUES ('%d', '%d', '%f', '%f', '%f', '%f', '%d', '%d')", 
-    g_PlayerData[playerid][pID], model, x, y, z, a, color1, color2);
-    mysql_tquery(g_SQL, query, "OnVehicleCreated", "d", vehicleid);
+CMD:loadvehicle(playerid)
+{
+    mysql_tquery(g_SQL, "SELECT * FROM vehicles", "OnVehicleLoaded", "");
     return 1;
 }
 
@@ -34,17 +25,16 @@ stock UpdateDataVehicle(vehicleid)
     g_VehicleData[vehicleid][vPos][3], g_VehicleData[vehicleid][vID]);
     
     mysql_tquery(g_SQL, query);
-    printf("[VEHICLE] Kendaraan id %d diupdate!", g_VehicleData[vehicleid][vID]);
+    printf("[VEHICLE] : Berhasil mengupdate kendaraan id [%d]!", g_VehicleData[vehicleid][vID]);
     return 1;
 }
 
-forward OnVehicleLoaded();
-public OnVehicleLoaded()
+Callback::OnVehicleLoaded()
 {
     new rows = cache_num_rows();
     if(!rows)
     {
-        print("[VEHICLE] Tidak ada kendaraan yang diload!");
+        print("[VEHICLE] : Tidak ada kendaraan yang diload!");
         return 1;
     }
     
@@ -87,16 +77,3 @@ public OnVehicleLoaded()
     printf("[VEHICLE] Kendaraan sebanyak %d berhasil dimuat", loaded);
     return 1;
 }
-
-forward OnVehicleCreated(vehicleid);
-public OnVehicleCreated(vehicleid)
-{
-    new insert_id = cache_insert_id();
-    if(vehicleid != INVALID_VEHICLE_ID && insert_id > 0)
-    {
-        g_VehicleData[vehicleid][vID] = insert_id;
-    }
-    printf("[VEHICLE] Sebuah kendaraan berhasil dibuat dengan id = %d",  g_VehicleData[vehicleid][vID]);
-    return 1;
-}
-

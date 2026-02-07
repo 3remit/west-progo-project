@@ -2,6 +2,7 @@
 
 enum E_PLAYER_DATA{
 	pID,
+	Text3D:pNameTag,
 
 	// UCP
 	pUCP[MAX_PLAYER_NAME],
@@ -11,6 +12,8 @@ enum E_PLAYER_DATA{
 
 	// character
 	pCharacter,
+	Float:pHealth,
+	Float:pArmor,
 	pName[MAX_PLAYER_NAME],
 	Float:pPos[4],
 	pInterior,
@@ -23,6 +26,11 @@ enum E_PLAYER_DATA{
 	pBirthYear,
 	pGender,
 	
+	// admin
+	pAdminLevel,
+	pAdminName[MAX_PLAYER_NAME],
+	bool:isAdminDuty,
+
 	// temp variable
 	bool:isLogin,
 	pLoginAttempt,

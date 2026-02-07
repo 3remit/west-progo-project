@@ -1,11 +1,15 @@
 #define COLOR_WHITE		  0xFFFFFFFF
-#define COLOR_USAGE		  0xF2FF00FF // {F2FF00}
-#define COLOR_ERROR       0xbd0000AA // {bd0000}
-#define COLOR_SUCCESS     0x04D400AA // {04d400} 
-#define COLOR_INFO        0x00a2FFAA  // {00a2ff}  
-#define COLOR_WARNING     0xFF8000AA // {ff8000} 
-#define COLOR_ADMIN       0xff0011AA // {ff0011}
-#define COLOR_SERVER      0xCCCCCCAA // {CCCCCC}
+
+#define COLOR_USAGE		  0xCDFF00FF // kuning pucat
+#define COLOR_ERROR       0xFF0A0EEE // merah
+#define COLOR_SUCCESS     0x00FF00FF // Hijau
+#define COLOR_INFO        0x00D1FFFF  // biru muda
+#define COLOR_SERVER      0xA0A0A0FF // abu abu
+
+#define COLOR_FADE1 0xB9B5B9FF
+#define COLOR_FADE2 0x8E9093FF
+#define COLOR_FADE3 0x6A6F6EFF
+#define COLOR_FADE4 0x24292CFF
 
 #define MYSQL_HOST "localhost"
 #define MYSQL_USER "root"
@@ -17,4 +21,7 @@
 #define DEFAULT_POS_Z 15.3746
 #define DEFAULT_POS_A 268.6832
 
-#define GAMEMODE "OMP blabla"
+#define GAMEMODE "Omp WP-RP"
+
+#define NAMETAG_DISTANCE 25.0
+#define CHAT_RADIUS 25.0

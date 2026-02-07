@@ -1,3 +1,47 @@
+stock AccountCheck(playerid)
+{
+    g_MysqlRaceCheck[playerid]++;
+
+    GetPlayerName(playerid, g_PlayerData[playerid][pUCP], MAX_PLAYER_NAME);
+
+    new query[128];
+    mysql_format(g_SQL, query, sizeof(query), "SELECT * FROM ucp WHERE ucp_name = '%e' LIMIT 1", g_PlayerData[playerid][pUCP]);
+    mysql_tquery(g_SQL, query, "OnUCPChecked", "dd", playerid, g_MysqlRaceCheck[playerid]);
+    return 1;
+}
+
+stock CheckUserCharacter(playerid)
+{
+    g_MysqlRaceCheck[playerid]++;
+
+    new query[128];
+    mysql_format(g_SQL, query, sizeof(query), "SELECT username FROM player WHERE ucp = '%s' LIMIT %d", g_PlayerData[playerid][pUCP], MAX_CHARS);
+    mysql_tquery(g_SQL, query, "OnCharacterLoaded", "dd", playerid, g_MysqlRaceCheck[playerid]);
+    return 1;
+}
+
+stock ShowCharacterList(playerid)
+{
+    new name[268],
+        str[128],
+        count;
+
+    for(new i; i < MAX_CHARS; i++)
+    {
+        if(PlayerCharacter[playerid][i][0] != EOS)
+        {
+            format(str, sizeof(str), "%s\n", PlayerCharacter[playerid][i]);
+            strcat(name, str);
+            count++;
+        }
+    }
+
+    if(count < MAX_CHARS) strcat(name, "+ New Character");
+    
+    Dialog_Show(playerid, DialogListChar, DIALOG_STYLE_LIST, "List Character", name, "Choose", "Close");
+    return 1;
+}
+
 stock ShowStats(playerid)
 {
     new str[155], 
@@ -39,7 +83,6 @@ stock ParseBirthDate(playerid, const date[])
     g_PlayerData[playerid][pBirthDay] = day;
     g_PlayerData[playerid][pBirthMonth] = month;
     g_PlayerData[playerid][pBirthYear] = year;
-    printf("Player %s tanggal lahir: %d/%d/%d", g_PlayerData[playerid][pName], g_PlayerData[playerid][pBirthDay], g_PlayerData[playerid][pBirthMonth], g_PlayerData[playerid][pBirthYear]);
     Dialog_Show(playerid, DialogGender, DIALOG_STYLE_LIST, "Gender", "Male\nFemale", "Continue", "");
     return 1;
 }
@@ -91,36 +134,12 @@ stock IsValidRPName(const name[])
 
 CreateSetupCharacter(playerid)
 {
-    if(!g_PlayerData[playerid][isLogin]) return SendError(playerid, "Kamu tidak memiliki akes untuk melakukan ini!");
+    if(!g_PlayerData[playerid][isLogin]) return NoPermision(playerid);
 
     SetSpawnInfo(playerid, NO_TEAM, g_PlayerData[playerid][pSkin], DEFAULT_POS_X, DEFAULT_POS_Y, DEFAULT_POS_Z, DEFAULT_POS_A, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
     GivePlayerMoneyEx(playerid, 5000);
     SpawnPlayer(playerid);
     return 1;
-}
-
-stock UpdateDataPlayer(playerid)
-{
-	if(!g_PlayerData[playerid][isLogin]) return 1;
-
-	GetPlayerPos(playerid, g_PlayerData[playerid][pPos][0], g_PlayerData[playerid][pPos][1], g_PlayerData[playerid][pPos][2]);
-	GetPlayerFacingAngle(playerid, g_PlayerData[playerid][pPos][3]);
-	g_PlayerData[playerid][pInterior] = GetPlayerInterior(playerid);
-	g_PlayerData[playerid][pVirtual_World] = GetPlayerVirtualWorld(playerid);
-	g_PlayerData[playerid][pSkin] = GetPlayerSkin(playerid);
-	g_PlayerData[playerid][pMoney] = GetPlayerMoney(playerid);
-	g_PlayerData[playerid][pLevel] = GetPlayerScore(playerid);
-
-	new query[500];
-	mysql_format(g_SQL, query, sizeof(query), "UPDATE player SET pos_x = %f, pos_y = %f, pos_z = %f, pos_a = %f, interior = %d, virtual_world = %d, skin = %d, money = %d, level = %d WHERE id = %d LIMIT 1",
-	g_PlayerData[playerid][pPos][0], g_PlayerData[playerid][pPos][1], g_PlayerData[playerid][pPos][2], 
-	g_PlayerData[playerid][pPos][3], g_PlayerData[playerid][pInterior], g_PlayerData[playerid][pVirtual_World], 
-	g_PlayerData[playerid][pSkin], g_PlayerData[playerid][pMoney], g_PlayerData[playerid][pLevel],
-	g_PlayerData[playerid][pID]);
-
-	mysql_tquery(g_SQL, query);
-	printf("[MYSQL] Data player id %d berhasil disimpan", g_PlayerData[playerid][pID]);
-	return 1;
 }
 
 stock GetPlayerNameEx(playerid)
@@ -145,6 +164,14 @@ ResetValueVariable(playerid)
     g_PlayerData[playerid][pBirthYear] = 0;
     g_PlayerData[playerid][pGender] = -1;
 
+    g_PlayerData[playerid][pHealth] = 0.0;
+    g_PlayerData[playerid][pArmor] = 0.0;
+
+    // admin
+    g_PlayerData[playerid][pAdminLevel] = 0;
+    g_PlayerData[playerid][pAdminName] = EOS;
+    g_PlayerData[playerid][isAdminDuty] = false;
+
     // bagian login register
     g_PlayerData[playerid][isLogin] = false;
     g_PlayerData[playerid][pLoginAttempt] = 0;
@@ -152,15 +179,12 @@ ResetValueVariable(playerid)
     g_PlayerData[playerid][pVerifyCode] = 0;
     g_PlayerData[playerid][pActivation] = 0;
 
-    print("[PLAYER] Variable berhasil direset");
     return 1;
 }
 
 GivePlayerMoneyEx(playerid, ammount)
 {
-    printf("Uang sebelum ditambah %d", g_PlayerData[playerid][pMoney]);
     GivePlayerMoney(playerid, ammount);
     g_PlayerData[playerid][pMoney] += ammount;
-    printf("Uang berhasil ditambah %d", g_PlayerData[playerid][pMoney]);
     return 1;
 }
