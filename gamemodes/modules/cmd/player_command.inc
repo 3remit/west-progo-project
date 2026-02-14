@@ -52,7 +52,7 @@ CMD:admins(playerid)
     new count;
     foreach(new i : Player)
     {
-        if(!g_PlayerData[i][isLogin]) continue;
+        if(!isPlayerLogged(playerid)) continue;
         if(g_PlayerData[i][pAdminLevel] < ADMIN_MODERATOR) continue;
         count++;
     }

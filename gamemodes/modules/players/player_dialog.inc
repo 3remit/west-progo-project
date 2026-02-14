@@ -44,10 +44,12 @@ Dialog:DialogListChar(playerid, response, listitem, inputtext[])
 {
 	if(!response) return KickEx(playerid);
 	new count;
-    Forex(i, listitem)
+    
+    for(new i = 0; i < listitem; i++)
     {
         count++;
     }
+
     if(PlayerCharacter[playerid][listitem][0] == EOS)
         return Dialog_Show(playerid, DialogCreateChar, DIALOG_STYLE_INPUT, "Create New Character", "{ffffff}Buat nama karakter (Contoh : John_Doe)\nMasukan nama dibawah:", "Input", "");
 
@@ -55,6 +57,7 @@ Dialog:DialogListChar(playerid, response, listitem, inputtext[])
     SetPlayerName(playerid, PlayerCharacter[playerid][listitem]);
 
     StartTickCount(playerid);
+
     new query[128];
     mysql_format(g_SQL, query, sizeof(query), "SELECT * FROM player WHERE username = '%e' LIMIT 1", PlayerCharacter[playerid][g_PlayerData[playerid][pCharacter]]);
     mysql_tquery(g_SQL, query, "OnCharacterDataLoaded", "d", playerid);
@@ -70,6 +73,7 @@ Dialog:DialogCreateChar(playerid, response, listitem, inputtext[])
     
     format(g_PlayerData[playerid][pName], MAX_PLAYER_NAME, inputtext);
     g_MysqlRaceCheck[playerid]++;
+    
     new query[128];
     mysql_format(g_SQL, query, sizeof(query), "SELECT username FROM player WHERE username = '%e' LIMIT 1", g_PlayerData[playerid][pName]);
     mysql_tquery(g_SQL, query, "OnUsernameChecked", "dsd", playerid, g_PlayerData[playerid][pName], g_MysqlRaceCheck[playerid]);

@@ -28,7 +28,7 @@ Callback::OnUCPChecked(playerid, race_check)
 	{
 		format(string, sizeof(string), "{ffffff}Username: {04d400}%s\n{ffffff} Status: {bd0000}Tidak terdaftar\n{ffffff}Akun UCP kamu belum terdaftar didalam server.\nSilahkan kunjungi discord server untuk membuat akun UCP.", g_PlayerData[playerid][pUCP]);
 		Dialog_Show(playerid, DialogUnused, DIALOG_STYLE_MSGBOX, "UCP", string, "Close", "");
-        KickEx(playerid);
+        Kick(playerid);
 	}
 	return 1;
 }
@@ -76,12 +76,12 @@ Callback::OnCharacterLoaded(playerid, race_check)
 
     new rows = cache_num_rows();
 
-    Forex(i, MAX_CHARS)
+    for(new i = 0; i < MAX_CHARS; i++)
     {
         PlayerCharacter[playerid][i][0] = EOS;
     }
 
-    Forex(k, rows)
+    for(new k = 0; k < rows; k++)
     {
         cache_get_value_name(k, "username", PlayerCharacter[playerid][k]);
     }

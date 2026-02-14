@@ -11,7 +11,7 @@ Gamemode by 3remit
 
 credit to : - open.mp/openmultiplayer for base gamemode
 						- Y-Less for sscanf
-						- pawn-lang for YSI 
+						- Y-Less for YSI Includes 
 						- pBlueG for MySQL
 						- Sreyas Sreelal for Samp Bcrypt
 						- katursis for Pawn.CMD
@@ -21,9 +21,6 @@ credit to : - open.mp/openmultiplayer for base gamemode
 						- maddinat0r for Samp Discord Connector
 						- AkshayMohan for Pawn Discord CMD                  
 */
-
-#define YSI_NO_VERSION_CHECK
-
 #include <open.mp>
 
 #undef MAX_PLAYERS
@@ -80,12 +77,14 @@ credit to : - open.mp/openmultiplayer for base gamemode
 
 // small_feature
 #include "modules\small_feature\nametag_player.inc"
+#include "modules\small_feature\date_system.inc"
+#include "modules\small_feature\hunger_system.inc"
 
 main(){
 }
 
 public OnGameModeInit()
-{
+{	
 	ShowNameTags(false);
 
 	DisableInteriorEnterExits();
@@ -109,16 +108,20 @@ public OnGameModeInit()
 public OnGameModeExit()
 {
 	mysql_close(g_SQL);
+	foreach(new i : Player)
+	{
+		CallLocalFunction("OnPlayerDisconnect", "d", i);
+	}
 	return 1;
 }
 
 public OnPlayerConnect(playerid)
 {
+	CreateTextdrawForPlayer(playerid);
+
 	SetPlayerColor(playerid, COLOR_WHITE);
 
-	g_PlayerData[playerid][pNameTag] = CreateDynamic3DTextLabel("Loading....", COLOR_WHITE, 0.0, 0.0, 0.1, NAMETAG_DISTANCE, .attachedplayer = playerid, .testlos = 1);
-
-	Forex(i, 3)
+	for(new i = 0; i < 3; i++)
 	{
 		TextDrawShowForPlayer(playerid, ServerName[i]);
 	}
@@ -129,6 +132,8 @@ public OnPlayerConnect(playerid)
 
 	if (IsPlayerUsingOfficialClient(playerid))
 		g_PlayerData[playerid][isOfficialClient] = true;
+
+	g_PlayerData[playerid][pNameTag] = CreateDynamic3DTextLabel("Loading....", COLOR_WHITE, 0.0, 0.0, 0.1, NAMETAG_DISTANCE, .attachedplayer = playerid, .testlos = 1);
 	return 1;
 }
 
@@ -139,10 +144,11 @@ public OnPlayerDisconnect(playerid, reason)
 	UpdateDataPlayer(playerid);
 	SetPlayerName(playerid, g_PlayerData[playerid][pUCP]);
 
+	DestroyAllTextdraw(playerid);
+
 	if(IsValidDynamic3DTextLabel(g_PlayerData[playerid][pNameTag]))
 	{
 		DestroyDynamic3DTextLabel(g_PlayerData[playerid][pNameTag]);
-		printf("Dynamic nametag dihapus -> pID %d", playerid);
 	}
 
 	g_PlayerData[playerid][isLogin] = false;
@@ -156,6 +162,21 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerSpawn(playerid)
 {
+	if(!isPlayerLogged(playerid)) return Kick(playerid);
+
+	for(new i = 0; i < 4; i++)
+	{
+		PlayerTextDrawShow(playerid, DateAndTime[playerid][i]);
+	}
+
+	for(new i = 0; i < 6; i++)
+	{
+		PlayerTextDrawShow(playerid, HungerAndThirst[playerid][i]);
+	}
+	
+	g_PlayerData[playerid][pHunger] = 90;
+	g_PlayerData[playerid][pThirst] = 90;
+	UpdateDisplayHungerAndThirst(playerid);
 	return 1;
 }
 
@@ -176,13 +197,13 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2]);
 	GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPos][3]);
 
-	defer DelaySaveVehicle(vehicleid);
+	UpdateDataVehicle(vehicleid);
 	return 1;
 }
 
 public OnPlayerRequestSpawn(playerid)
 {
-	if(!g_PlayerData[playerid][isLogin])
+	if(!isPlayerLogged(playerid))
 	{
 		SendClientMessage(playerid, COLOR_ERROR, "ERROR: Kamu tidak diizinkan menekan tombol spawn!");
 		return 0;

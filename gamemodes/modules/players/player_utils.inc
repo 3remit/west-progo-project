@@ -163,6 +163,8 @@ ResetValueVariable(playerid)
     g_PlayerData[playerid][pBirthMonth] = 0;
     g_PlayerData[playerid][pBirthYear] = 0;
     g_PlayerData[playerid][pGender] = -1;
+    g_PlayerData[playerid][pHunger] = 0;
+    g_PlayerData[playerid][pThirst] = 0;
 
     g_PlayerData[playerid][pHealth] = 0.0;
     g_PlayerData[playerid][pArmor] = 0.0;
