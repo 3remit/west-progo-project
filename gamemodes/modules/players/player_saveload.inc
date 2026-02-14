@@ -1,6 +1,6 @@
 stock UpdateDataPlayer(playerid)
 {
-    if(!g_PlayerData[playerid][isLogin]) return 1;
+    if(!g_PlayerData[playerid][isLogin] || playerid != INVALID_PLAYER_ID) return 1;
 
     GetPlayerPos(playerid, g_PlayerData[playerid][pPos][0], g_PlayerData[playerid][pPos][1], g_PlayerData[playerid][pPos][2]);
     GetPlayerFacingAngle(playerid, g_PlayerData[playerid][pPos][3]);

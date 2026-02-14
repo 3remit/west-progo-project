@@ -25,6 +25,8 @@ enum E_PLAYER_DATA{
 	pBirthMonth,
 	pBirthYear,
 	pGender,
+	pHunger,
+	pThirst,
 	
 	// admin
 	pAdminLevel,

@@ -1,5 +1,5 @@
 #define Callback::%0(%1) forward %0(%1); public %0(%1)
-#define Forex(%0,%1) for(new %0 = 0; %0 < %1; %0++)
+#define isPlayerLogged(%0) g_PlayerData[%0][isLogin]
 
 // sendclient
 #define SendErrorMessage(%0,%1) SendClientMessage(%0, COLOR_ERROR, "ERROR :{ffffff} "%1)

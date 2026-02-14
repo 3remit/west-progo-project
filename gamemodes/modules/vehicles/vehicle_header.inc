@@ -11,4 +11,4 @@ enum E_VEHICLE_DATA{
 		
 };
 new g_VehicleData[MAX_VEHICLES][E_VEHICLE_DATA];
-new Iterator: PlayerVehicle<MAX_VEHICLES>; 
+new Iterator:PlayerVehicle<MAX_VEHICLES>; 

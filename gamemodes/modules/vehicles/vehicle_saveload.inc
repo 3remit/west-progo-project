@@ -1,18 +1,3 @@
-timer DelaySaveVehicle[1000](vehicleid)
-{
-    if(!IsValidVehicle(vehicleid))
-        return printf("[VEHICLE] : Error dalam menyimpan kendaraan id [%d]!", vehicleid);
-
-    UpdateDataVehicle(vehicleid);
-    return 1;
-}
-
-CMD:loadvehicle(playerid)
-{
-    mysql_tquery(g_SQL, "SELECT * FROM vehicles", "OnVehicleLoaded", "");
-    return 1;
-}
-
 stock UpdateDataVehicle(vehicleid)
 {
     if(vehicleid == INVALID_VEHICLE_ID) return 0;

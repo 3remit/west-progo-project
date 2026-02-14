@@ -1,6 +1,6 @@
 stock SetAdminLevel(targetID, level)
 {
-	if(!IsPlayerConnected(targetID) || !g_PlayerData[targetID][isLogin]) return 0;
+	if(!IsPlayerConnected(targetID) || !isPlayerLogged(targetID)) return 0;
 
 	g_PlayerData[targetID][pAdminLevel] = level;
 
@@ -14,7 +14,7 @@ stock SetAdminLevel(targetID, level)
 
 stock SetAdminName(playerid, const name[])
 {
-	if(!IsPlayerConnected(playerid) || !g_PlayerData[playerid][isLogin]) return 0;
+	if(!IsPlayerConnected(playerid) || !isPlayerLogged(playerid)) return 0;
 
 	format(g_PlayerData[playerid][pAdminName], MAX_PLAYER_NAME, "%s", name);
 	new query[128];
@@ -27,7 +27,7 @@ stock SetAdminName(playerid, const name[])
 
 stock ToggleAdminDuty(playerid, bool:toggle)
 {
-	if(!g_PlayerData[playerid][isLogin] || !IsPlayerConnected(playerid)) return 0;
+	if(!isPlayerLogged(playerid) || !IsPlayerConnected(playerid)) return 0;
 
 	g_PlayerData[playerid][isAdminDuty] = toggle;
 	if(g_PlayerData[playerid][isAdminDuty] == true)
