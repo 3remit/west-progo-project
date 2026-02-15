@@ -120,7 +120,7 @@ stock CreateTextdrawForPlayer(playerid)
     PlayerTextDrawFont(playerid, HungerAndThirst[playerid][3], TEXT_DRAW_FONT_SPRITE_DRAW);
     PlayerTextDrawSetProportional(playerid, HungerAndThirst[playerid][3], true);
 
-    HungerAndThirst[playerid][4] = CreatePlayerTextDraw(playerid, 560.000, 271.000, "80%");
+    HungerAndThirst[playerid][4] = CreatePlayerTextDraw(playerid, 560.000, 271.000, "80#");
     PlayerTextDrawLetterSize(playerid, HungerAndThirst[playerid][4], 0.409, 1.899);
     PlayerTextDrawAlignment(playerid, HungerAndThirst[playerid][4], TEXT_DRAW_ALIGN_LEFT);
     PlayerTextDrawColour(playerid, HungerAndThirst[playerid][4], -1);
@@ -130,7 +130,7 @@ stock CreateTextdrawForPlayer(playerid)
     PlayerTextDrawFont(playerid, HungerAndThirst[playerid][4], TEXT_DRAW_FONT_3);
     PlayerTextDrawSetProportional(playerid, HungerAndThirst[playerid][4], true);
 
-    HungerAndThirst[playerid][5] = CreatePlayerTextDraw(playerid, 561.000, 297.000, "100%");
+    HungerAndThirst[playerid][5] = CreatePlayerTextDraw(playerid, 561.000, 297.000, "100#");
     PlayerTextDrawLetterSize(playerid, HungerAndThirst[playerid][5], 0.409, 1.899);
     PlayerTextDrawAlignment(playerid, HungerAndThirst[playerid][5], TEXT_DRAW_ALIGN_LEFT);
     PlayerTextDrawColour(playerid, HungerAndThirst[playerid][5], -1);
