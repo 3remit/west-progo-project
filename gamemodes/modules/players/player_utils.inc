@@ -155,10 +155,10 @@ ResetValueVariable(playerid)
     g_PlayerData[playerid][pSkin] = 0;
     g_PlayerData[playerid][pMoney] = 0;
     g_PlayerData[playerid][pLevel] = 0;
-    g_PlayerData[playerid][pPos][0] = 0.0;
-    g_PlayerData[playerid][pPos][1] = 0.0;
-    g_PlayerData[playerid][pPos][2] = 0.0;
-    g_PlayerData[playerid][pPos][3] = 0.0;
+    g_PlayerData[playerid][pPosX] = 0.0;
+    g_PlayerData[playerid][pPosY] = 0.0;
+    g_PlayerData[playerid][pPosZ] = 0.0;
+    g_PlayerData[playerid][pPosA] = 0.0;
     g_PlayerData[playerid][pBirthDay] = 0;
     g_PlayerData[playerid][pBirthMonth] = 0;
     g_PlayerData[playerid][pBirthYear] = 0;

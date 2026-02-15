@@ -15,7 +15,7 @@ enum E_PLAYER_DATA{
 	Float:pHealth,
 	Float:pArmor,
 	pName[MAX_PLAYER_NAME],
-	Float:pPos[4],
+	Float:pPosX, Float:pPosY, Float:pPosZ, Float:pPosA,
 	pInterior,
 	pVirtual_World,
 	pSkin,

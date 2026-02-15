@@ -26,12 +26,6 @@ CMD:disablecp(playerid)
     return 1;
 }
 
-CMD:tes(playerid)
-{
-    GameTextForPlayer(playerid, "Halo, kamu ~r~gay ya", 2000, 0);
-    return 1;
-}
-
 // /stats 
 CMD:stats(playerid)
 {

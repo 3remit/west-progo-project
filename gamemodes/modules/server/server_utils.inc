@@ -90,22 +90,27 @@ ProximityChatDetector(playerid, Float:radius, const message[], color1, color2, c
 		if(IsPlayerInRangeOfPoint(i, radius / 16, posX, posY, posZ))
 		{
 			SendClientMessage(i, color1, message);
+			SetPlayerChatBubble(i, message, color1, radius / 16, 2000);
 		}
 		else if(IsPlayerInRangeOfPoint(i, radius / 8, posX, posY, posZ))
 		{
 			SendClientMessage(i, color2, message);
+			SetPlayerChatBubble(i, message, color2, radius / 8, 2000);
 		}
 		else if(IsPlayerInRangeOfPoint(i, radius / 4, posX, posY, posZ))
 		{
 			SendClientMessage(i, color3, message);
+			SetPlayerChatBubble(i, message, color3, radius / 4, 2000);
 		}
 		else if(IsPlayerInRangeOfPoint(i, radius / 2, posX, posY, posZ))
 		{
 			SendClientMessage(i, color4, message);
+			SetPlayerChatBubble(i, message, color4, radius / 2, 2000);
 		}
 		else if(IsPlayerInRangeOfPoint(i, radius, posX, posY, posZ))
 		{
 			SendClientMessage(i, color5, message);
+			SetPlayerChatBubble(i, message, color2, radius, 2000);
 		}
 	}
 	return 1;

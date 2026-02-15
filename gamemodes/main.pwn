@@ -64,6 +64,7 @@ credit to : - open.mp/openmultiplayer for base gamemode
 
 // vehicle module
 #include "modules\vehicles\vehicle_header.inc"
+#include "modules\vehicles\vehicle_utils.inc"
 #include "modules\vehicles\vehicle_create.inc"
 #include "modules\vehicles\vehicle_saveload.inc"
 
@@ -194,8 +195,8 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 
 	g_VehicleData[vehicleid][vCooldownSave] = currentTime;
 
-	GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2]);
-	GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPos][3]);
+	GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPosX], g_VehicleData[vehicleid][vPosY], g_VehicleData[vehicleid][vPosZ]);
+	GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPosA]);
 
 	UpdateDataVehicle(vehicleid);
 	return 1;
@@ -213,7 +214,7 @@ public OnPlayerRequestSpawn(playerid)
 
 public OnPlayerText(playerid, text[])
 {
-	new msg[144];
+	new msg[128];
 	if(!g_PlayerData[playerid][isAdminDuty])
 	{
 		format(msg, sizeof(msg), "%s says %s", g_PlayerData[playerid][pName], text);

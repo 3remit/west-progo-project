@@ -17,4 +17,6 @@ I don't have time to update (malazz)
 [+] Add a hunger thirst system.
 [+] Add new textdraw -> Time and date;
 [-] Removed some macro.
+
+Soon
 ```

@@ -42,20 +42,21 @@ stock UpdateDisplayHungerAndThirst(playerid)
 
 	GetColorHungerThirst(g_PlayerData[playerid][pHunger], color, sizeof(color));
 	format(string, sizeof(string), "%s%d%%", color, g_PlayerData[playerid][pHunger]);
-	PlayerTextDrawSetString(playerid, HungerAndThirst[playerid][2], string);
+	PlayerTextDrawSetString(playerid, HungerAndThirst[playerid][4], string);
 
 	GetColorHungerThirst(g_PlayerData[playerid][pThirst], color, sizeof(color));
 	format(string, sizeof(string), "%s%d%%", color, g_PlayerData[playerid][pThirst]);
-	PlayerTextDrawSetString(playerid, HungerAndThirst[playerid][3], string);
+	PlayerTextDrawSetString(playerid, HungerAndThirst[playerid][5], string);
 	return 1;
 }
 
-ptask UpdateHungerSystem[10000](playerid)
+ptask UpdateHungerSystem[60000](playerid)
 {
 	if(!isPlayerLogged(playerid) || !IsPlayerConnected(playerid)) return 1;
 
-	g_PlayerData[playerid][pHunger] -= 1;
-	g_PlayerData[playerid][pThirst] -= 1;
+	new value = Random(3);
+	g_PlayerData[playerid][pHunger] -= value;
+	g_PlayerData[playerid][pThirst] -= value;
 
 	if(g_PlayerData[playerid][pHunger] < 0) g_PlayerData[playerid][pHunger] = 0;
 	if(g_PlayerData[playerid][pThirst] < 0) g_PlayerData[playerid][pThirst] = 0;

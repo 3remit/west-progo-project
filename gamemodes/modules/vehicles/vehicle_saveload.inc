@@ -6,8 +6,8 @@ stock UpdateDataVehicle(vehicleid)
 
     new query[300];
     mysql_format(g_SQL, query, sizeof(query), "UPDATE vehicles SET pos_x = '%f', pos_y = '%f', pos_z = '%f', pos_a = '%f' WHERE id = '%d' LIMIT 1", 
-    g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2], 
-    g_VehicleData[vehicleid][vPos][3], g_VehicleData[vehicleid][vID]);
+    g_VehicleData[vehicleid][vPosX], g_VehicleData[vehicleid][vPosY], g_VehicleData[vehicleid][vPosZ], 
+    g_VehicleData[vehicleid][vPosA], g_VehicleData[vehicleid][vID]);
     
     mysql_tquery(g_SQL, query);
     printf("[VEHICLE] : Berhasil mengupdate kendaraan id [%d]!", g_VehicleData[vehicleid][vID]);
@@ -48,13 +48,14 @@ Callback::OnVehicleLoaded()
         g_VehicleData[vehicleid][vID] = vehicle_id;
         g_VehicleData[vehicleid][vOwner] = owner_id;
         g_VehicleData[vehicleid][vModel] = model;
-        g_VehicleData[vehicleid][vPos][0] = x;
-        g_VehicleData[vehicleid][vPos][1] = y;
-        g_VehicleData[vehicleid][vPos][2] = z;
-        g_VehicleData[vehicleid][vPos][3] = a;
+        g_VehicleData[vehicleid][vPosX] = x;
+        g_VehicleData[vehicleid][vPosY] = y;
+        g_VehicleData[vehicleid][vPosZ] = z;
+        g_VehicleData[vehicleid][vPosA] = a;
         g_VehicleData[vehicleid][vColor1] = color1;
         g_VehicleData[vehicleid][vColor2] = color2;
         g_VehicleData[vehicleid][isExists] = true;
+        SetVehicleAllParamsOff(vehicleid);
 
         Iter_Add(PlayerVehicle, vehicleid);
         loaded++;

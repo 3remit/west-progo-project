@@ -27,8 +27,8 @@ CMD:parkveh(playerid)
     if(g_VehicleData[vehicleid][vID] <= 0)
         return SendClientMessage(playerid, COLOR_ERROR, "ERROR: {ffffff}Kendaraan ini tidak tersedia didalam database");
 
-    GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPos][0], g_VehicleData[vehicleid][vPos][1], g_VehicleData[vehicleid][vPos][2]);
-    GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPos][3]);
+    GetVehiclePos(vehicleid, g_VehicleData[vehicleid][vPosX], g_VehicleData[vehicleid][vPosY], g_VehicleData[vehicleid][vPosZ]);
+    GetVehicleZAngle(vehicleid, g_VehicleData[vehicleid][vPosA]);
 
     UpdateDataVehicle(vehicleid);
     SendClientMessage(playerid, COLOR_SERVER, "SERVER: {ffffff}Kendaraan kamu berhasil diparkirkan!");
